@@ -79,7 +79,7 @@ class StoryList {
     let newStory = await StoryList.addStory(currentUser,
     {title: "Test", author: "Me", url: "http://meow.com"});
 
-    return newStory;
+    return newStory instanceof Story;
   }
 }
 
