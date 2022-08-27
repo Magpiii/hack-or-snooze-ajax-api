@@ -73,11 +73,12 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
+  static async addStory(/* user, newStory */) {
     // UNIMPLEMENTED: complete this function!
+    let currentUser = ''; 
 
     let newStory = await StoryList.addStory(currentUser,
-    {title: "Test", author: "Me", url: "http://meow.com"});
+    {title: 'Test', author: 'Me', url: 'http://meow.com'});
 
     return newStory instanceof Story;
   }

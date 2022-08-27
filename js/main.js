@@ -39,11 +39,6 @@ async function start() {
 
   // if we got a logged-in user
   if (currentUser) updateUIOnUserLogin();
-
-  // Test code for API call. 
-  let stories = new StoryList()
-  let isNewStory = await stories.addStory()
-  return isNewStory
 }
 
 // Once the DOM is entirely loaded, begin the app
@@ -53,3 +48,6 @@ console.warn("HEY STUDENT: This program sends many debug messages to" +
   " seeing those helpful debug messages. In your browser console, click on" +
   " menu 'Default Levels' and add Verbose");
 $(start);
+
+// Test code for API call. 
+StoryList.addStory(); 
