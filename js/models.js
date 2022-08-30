@@ -25,7 +25,7 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    return "https://hack-or-snooze-v3.herokuapp.com/stories";
   }
 }
 
@@ -76,9 +76,6 @@ class StoryList {
   static async addStory(/* user, newStory */) {
     // UNIMPLEMENTED: complete this function!
     let currentUser = ''; 
-
-    let newStory = await StoryList.addStory(currentUser,
-    {title: 'Test', author: 'Me', url: 'http://meow.com'});
 
     return newStory instanceof Story;
   }
@@ -200,3 +197,7 @@ class User {
     }
   }
 }
+
+// Test code, delete later. 
+let newStory = await StoryList.addStory(currentUser,
+  {title: 'Test', author: 'Me', url: 'https://hack-or-snooze-v3.herokuapp.com/stories'});
