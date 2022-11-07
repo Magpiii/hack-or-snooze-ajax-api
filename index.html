@@ -39,7 +39,7 @@
   </div>
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
-    <a class="nav-link" href="#" id="submit">Submit</a>
+    <a class="nav-link" href="#" id="nav-submit">Submit</a>
     <a class="nav-link" href="#" id="nav-user-profile"></a>
     <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
   </div>
@@ -98,9 +98,15 @@
 </section>
 
 <!-- Submit story form -->
-<form>
-  <label for="title"></label>
-  <input type="hidden" id="title">
+<form id="submit-form" class="submit-form hidden">
+  <div>
+    <label for="title">Title:</label>
+    <input id="title">
+  </div>
+  <div>
+    <label for="link">Link:</label>
+    <input id="link">
+  </div>
 </form>
 
 <!-- Library JS & our JS -->

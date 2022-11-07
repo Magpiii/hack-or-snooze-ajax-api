@@ -12,7 +12,7 @@ function navAllStories(evt) {
   putStoriesOnPage();
 }
 
-$body.on("click", "#nav-all", navAllStories);
+$body.on('click', "#nav-all", navAllStories);
 
 /** Show login/signup on click on "login" */
 
@@ -23,7 +23,15 @@ function navLoginClick(evt) {
   $signupForm.show();
 }
 
-$navLogin.on("click", navLoginClick);
+$body.on('click', '#nav-login', navLoginClick);
+
+function navSubmitClick(evt) {
+  console.debug("navSubmitClick", evt);
+  hidePageComponents();
+  $submitForm.show();
+}
+
+$body.on('click', '#nav-submit', navSubmitClick);
 
 /** When a user first logins in, update the navbar to reflect that. */
 
@@ -33,10 +41,4 @@ function updateNavOnLogin() {
   $navLogin.hide();
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
-}
-
-function navSubmitClick(evt) {
-  console.debug("navSubmitClick", evt);
-  hidePageComponents();
-  let $navSubmit = {};
 }
