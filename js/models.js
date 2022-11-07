@@ -76,6 +76,7 @@ class StoryList {
   static async addStory(/* user, newStory */) {
     // UNIMPLEMENTED: complete this function!
     let currentUser = '';
+    let newStory = StoryList.getStories();
 
     return newStory instanceof Story;
   }
@@ -197,7 +198,3 @@ class User {
     }
   }
 }
-
-// Test code, delete later. 
-let newStory = await StoryList.addStory(currentUser,
-{title: 'Test', author: 'Me', url: 'https://hack-or-snooze-v3.herokuapp.com/stories'});
