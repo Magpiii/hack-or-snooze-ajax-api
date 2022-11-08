@@ -72,14 +72,6 @@ class StoryList {
    *
    * Returns the new Story instance
    */
-
-  static async addStory(/* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
-    let currentUser = '';
-    let newStory = StoryList.getStories();
-
-    return newStory instanceof Story;
-  }
 }
 
 

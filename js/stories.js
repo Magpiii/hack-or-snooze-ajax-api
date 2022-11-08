@@ -3,6 +3,9 @@
 // This is the global list of the stories, an instance of StoryList
 let storyList;
 
+// List of stories favorited by user. 
+let favorites = [];
+
 /** Get and show stories when site first loads. */
 
 async function getAndShowStoriesOnStart() {
@@ -31,6 +34,7 @@ function generateStoryMarkup(story) {
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
+        <button class=favorite-${story.storyId}>Favorite</button>
       </li>
     `);
 }
@@ -50,3 +54,36 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+function addCustomStory() {
+  // Save data from form. 
+  let $title = $('#title').val();
+  let $link = $('#link').val(); 
+  let $author = $('#author').val();
+  // Create story class based on data from form. 
+  let custStory = new Story({storyId: 0, title: $title, author: $author, url: $link, username: 'Defalt', createdAt: 'Just now'});
+  // Add new story to storyList. 
+  console.log(custStory);
+  storyList.stories.unshift(custStory);
+  hidePageComponents();
+  // Append new story HTML to main page. 
+  putStoriesOnPage();
+
+  // $('#all-stories-list').prepend(generateStoryMarkup(custStory)); 
+}
+
+function toggleFavorite(story) {
+  if (favorites.includes(story)) {
+    favorites.remove(story); 
+    $('.favorite-true').attr('class', 'favorite-false'); 
+  } else {
+    favorites.push(story); 
+    $('.favorite-false').attr('class', 'favorite-true'); 
+  }
+}
+
+$('#submit-form').on('submit', (e) => {
+  e.preventDefault(); 
+
+  addCustomStory();
+});
