@@ -10,6 +10,7 @@ let favorites = [];
 
 async function getAndShowStoriesOnStart() {
   storyList = await StoryList.getStories();
+  console.log(storyList); 
   $storiesLoadingMsg.remove();
 
   putStoriesOnPage();
@@ -34,7 +35,7 @@ function generateStoryMarkup(story) {
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
-        <button class=favorite-${story.storyId}>Favorite</button>
+        <button class=favorite-${story.storyId} id="favorite-button">Toggle favorite</button>
       </li>
     `);
 }
@@ -61,26 +62,45 @@ function addCustomStory() {
   let $link = $('#link').val(); 
   let $author = $('#author').val();
   // Create story class based on data from form. 
-  let custStory = new Story({storyId: 0, title: $title, author: $author, url: $link, username: 'Defalt', createdAt: 'Just now'});
+  let custStory = new Story({storyId: 0, title: $title, author: $author, url: $link, username: currentUser.username, createdAt: 'Just now'});
   // Add new story to storyList. 
   console.log(custStory);
   storyList.stories.unshift(custStory);
   hidePageComponents();
   // Append new story HTML to main page. 
   putStoriesOnPage();
-
-  // $('#all-stories-list').prepend(generateStoryMarkup(custStory)); 
 }
 
-function toggleFavorite(story) {
-  if (favorites.includes(story)) {
-    favorites.remove(story); 
-    $('.favorite-true').attr('class', 'favorite-false'); 
-  } else {
-    favorites.push(story); 
-    $('.favorite-false').attr('class', 'favorite-true'); 
-  }
-}
+// function toggleFavorite(story) {
+//   if (favorites.includes(story)) {
+//     favorites.remove(story);
+//     console.log(favorites);
+//   } else {
+//     favorites.push(story); 
+//     console.log(favorites);
+//   }
+// }
+
+$(document).ready(() => {
+  $(document).on('click', (e) => {
+    console.log('clicked'); 
+    let $story_id = $(e.target).parent().attr('id');
+    console.log($story_id);
+
+    for (let i = 0; i < storyList.stories.length; i++) {
+      let story = storyList.stories[i]; 
+      
+      // If the storyId is found and favorites includes that story...
+      if (story.storyId = $story_id && favorites.includes(story)) {
+        favorites.splice(i, 1); 
+      } else {
+        favorites.push(story);  
+      }
+    }
+    console.log(favorites); 
+  }); 
+}); 
+  
 
 $('#submit-form').on('submit', (e) => {
   e.preventDefault(); 
