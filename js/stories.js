@@ -36,17 +36,12 @@ function generateStoryMarkup(story) {
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
         <button class="favorite-${story.storyId}" id="favorite-button">Toggle favorite</button>
-        <button class="remove-whole-story" id="remove-whole-story${story.storyId}">Remove story</button>
+        <button class="remove-whole-story" id="remove-whole-story-${story.storyId}">Remove story</button>
       </li>
     `);
 }
 
-function generateFavoritesMarkup() {
-
-}
-
 /** Gets list of stories from server, generates their HTML, and puts on page. */
-
 function putStoriesOnPage() {
   console.debug("putStoriesOnPage");
 
@@ -139,7 +134,21 @@ $(document).ready(() => {
   })
 
   $(document).on('click', '.remove-whole-story', (e) => {
-    console.log('clicked remove whole story'); 
+    console.log('clicked remove whole story');
+
+    let $story_id = $(e.target).parent().attr('id');
+    console.log(storyList.stories); 
+
+    for (let story of storyList.stories) {
+      console.log(story.storyId); 
+      if (story.storyId == $story_id) {
+        // Remove story from list. 
+        storyList.stories.splice(story, 1);
+        hidePageComponents();
+        // Replace old story list with updated story list. 
+        putStoriesOnPage();
+      }
+    }
   }); 
 
   $(document).on('click', '#nav-favorites', (e) => {
